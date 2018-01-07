@@ -1,0 +1,311 @@
+import java.util.Random;
+
+public class Cook {
+	// >>> please respect for my labour :)<<< 
+	private String type;
+
+	private String name;
+
+	private String id;
+
+	private double baseSalarys;
+
+	private double  bounties;
+
+	//<<<I create constructors below>>>>
+	public Cook() {
+this.bounties = bounties;
+this.baseSalarys = baseSalarys;
+this.name = name;
+this.type = type;
+this.id = id;
+	}
+	public Cook(String type,String name,String id,double baseSalarys,double bounties) {
+
+		if(verify(type))  //verifier is located at down.
+			this.type = type;
+
+		setType(type);
+		
+		this.id = randomIdGenerator();
+
+		this.bounties = bounties;
+
+		this.name = name;
+
+		this.baseSalarys = baseSalarys;
+
+	}
+
+	// <<<I write getters and setters down below>>>> 
+
+	public String getType() {
+
+		return type;
+	}
+
+	public String getName() {
+
+		return name;
+	}
+
+	public String getId() {
+
+		return id;
+	}
+
+	public void setType(String type) {
+
+		if(verify(type)) 
+
+			this.type = type;
+
+	}
+
+	public void setName(String name) {
+
+		this.name = name;
+	}
+
+	public void setId(String id) {
+
+		this.id = randomIdGenerator();
+
+	}
+
+	public void setBaseSalarys(double baseSalarys) {
+
+		this.baseSalarys = baseSalarys;
+
+	}
+
+	public void setBounties(double bounties) {
+
+		this.bounties = bounties;
+
+	}
+
+	public String ToString() {
+
+		return "Type: "+type+"        Name: "+name+"\n"+"ID: "+id+"        Total Salary: "+(baseSalarys+bounties)+"\n";
+
+	}
+
+	private String randomIdGenerator() {
+
+		Random r = new Random();
+
+		String chars[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+
+		String  RandomChar1 = chars[r.nextInt(chars.length)];
+
+		String  RandomChar2 = chars[r.nextInt(chars.length)];
+
+		String  RandomChar3 = chars[r.nextInt(chars.length)];
+
+		int randomInt1 = r.nextInt(10);
+
+		int randomInt2 = r.nextInt(10);
+
+		return RandomChar1.toUpperCase()+RandomChar2.toUpperCase()+RandomChar3.toUpperCase()+randomInt1+randomInt2 ;
+
+	}
+
+	// as you can understand I create a verifier that checks whether input is a valid position or not.
+
+	private boolean verify(String input){
+
+		if(input == "Chef" || input == "Chef Assistant"|| input == "Sous Chef" )
+			return true;
+		else 
+			return false;
+	}
+
+
+
+}
+
+//____________________________________________________________
+//<<<<<<<<<<<<<<<<<<<<Test Class Is Down Below>>>>>>>>>>>>>>>>>>>>
+//____________________________________________________________
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Cook cooks = new Cook();  //Again Cook class checks cook types.
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("#Chefs ?");
+
+		int ChefNumber = sc.nextInt();
+
+		System.out.println("#Chef Assistants ?");
+
+		int ChefAssistant = sc.nextInt();
+
+		System.out.println("#Sous Chefs ?");
+
+		int SousChef = sc.nextInt();
+
+		// <<<<<<<<<<<<<<<<<<<<<Array lists>>>>>>>>>>>>>>>>>>>>>>>>>
+		ArrayList<Double> CookBounties = new ArrayList<Double>();
+		ArrayList<Double> CookBaseSalary = new ArrayList<Double>();
+		ArrayList<String> CookId = new ArrayList<String>();  
+		ArrayList<String> CookType = new ArrayList<String>();  
+		ArrayList<String> CookName = new ArrayList<String>();  
+
+		//	ArrayList<double> CookSalary = new ArrayList<double>();  
+
+		//________________________________________________________________________
+
+		for (int i = 0; i < ChefNumber; i++) {   //chef loop<<<<<<<<<<<<<<<<<<<<<<
+
+			System.out.println("Enter your name please, Chef !");
+
+			String  cname = sc.next();
+
+			System.out.println("What is your salary expectation, "+cname+" ?");
+
+			int salary = sc.nextInt();
+
+			while(salary>2000) {
+
+				System.out.println("Exceeds,Try again!");
+
+				salary = sc.nextInt();
+
+			}
+			CookBaseSalary.add(baseSalaryMethod("Chef"));
+
+			CookBounties.add(SalaryMethod("Chef"));
+
+			CookType.add("Chef");
+
+			CookId.add("");
+
+			CookName.add(cname);
+
+			cooks.setName(cname);
+		}
+
+		//________________________________________________________________________
+
+		for (int i = 0; i < ChefAssistant; i++) {
+
+			System.out.println("Enter your name please, Chef Assistant !");
+
+			String  cname = sc.next();
+
+			System.out.println("What is your salary expectation, "+cname+" ?");
+
+			int salary = sc.nextInt();
+
+			while(salary>1500) {
+
+				System.out.println("Exceeds,Try again!");
+
+				salary = sc.nextInt();
+			}
+			CookBaseSalary.add(baseSalaryMethod("Chef Assistant"));
+
+			CookBounties.add(SalaryMethod("Chef Assistant"));
+
+			CookType.add("Chef Assistant");
+
+			CookId.add("");
+
+			CookName.add(cname);
+
+			cooks.setName(cname);
+		}
+		//________________________________________________________________________
+
+
+		for (int i = 0; i < SousChef; i++) {
+
+			System.out.println("Enter your name please,Sous Chef !");
+
+			String  cname = sc.next();
+
+			System.out.println("What is your salary expectation, "+cname+" ?");
+
+			int salary = sc.nextInt();
+
+			while(salary>1000) {
+
+				System.out.println("Exceeds,Try again!");
+
+				salary = sc.nextInt();
+
+			}
+			CookBaseSalary.add(baseSalaryMethod("Sous Chef"));
+
+			CookBounties.add(SalaryMethod("Sous Chef"));
+
+			CookType.add("Sous Chef");
+
+			CookId.add("");
+
+			CookName.add(cname);
+
+			cooks.setName(cname);
+		}
+		sc.close();
+		//________________________________________________________________________
+
+		System.out.println();
+		for (int i = 0; i <CookName.size(); i++) {
+
+			//<<<I was Include Cook class down below>>>
+			cooks.setName(CookName.get(i));
+			cooks.setId(CookId.get(i));
+			cooks.setType(CookType.get(i));
+			cooks.setBounties(CookBounties.get(i));
+			cooks.setBaseSalarys(CookBaseSalary.get(i));
+			System.out.println(cooks.ToString()+"\n");
+
+		}
+
+	}
+	private static double SalaryMethod(String type) {
+		Random r = new Random();
+		double salary;
+		double salaryConstant;
+		int weekend;
+		if(type =="Chef" ) {
+			salaryConstant = 0.5;}
+		else if (type == "Chef Assistant") {
+			salaryConstant = 0.40;}
+		else {
+			salaryConstant = 0.25;}
+// there is 4 weeks 30 days thus (5 weekday+ 2 weekend day)+(5+ 2) +(5 +2) +(5 +2)+ 2(weekday)-->22weekday+8weekendday>>>
+int sum=0;
+for (int i = 0; i < 8; i++) { // 8 iteration for each weekend day.
+	int plate = r.nextInt(300)+201; // --> [200,500]
+    sum+=plate;	
+}
+	
+		salary = ((50-20)*salaryConstant)*22+(salaryConstant*(sum-20*8));
+		return salary;
+	}
+	private static double baseSalaryMethod(String type) {
+		int baseSalary;
+		if(type =="Chef" ) {
+			baseSalary = 2000;
+		}
+		else if (type == "Chef Assistant") {
+			baseSalary = 1500;
+		}
+		else {
+			baseSalary = 1000;
+		}
+		return baseSalary;
+	}
+}
+//>>>dear instructor code works %100 correct, but if you want you can try yourself.
+
